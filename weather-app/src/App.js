@@ -10,6 +10,7 @@ const API_KEY = '05508bb378ad891b493b0c886cca7a57';
 class App extends React.Component {
   state = {
     city: '',
+    weather: '',
     latitude: '',
     longitude: '',
     temp: '',
@@ -17,7 +18,6 @@ class App extends React.Component {
     tempMin: '',
     humidity: '',
     pressure: '',
-    rain: '',
     wind: '',
     isLoading: false,
     error: false
@@ -25,13 +25,14 @@ class App extends React.Component {
 
   getWeather= (e) => {
     e.preventDefault();
-    const city = e.target.elements.city.value;
+    let city = e.target.elements.city.value;
   
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then(response => {
       console.log(response);
       this.setState({
         city: response.data.name,
+        weather: response.data.weather[0].description,
         latitude: response.data.coord.lat,
         longitude: response.data.coord.lon,
         temp: response.data.main.temp,
@@ -39,10 +40,11 @@ class App extends React.Component {
         tempMin: response.data.main.temp_min,
         humidity: response.data.main.humidity,
         pressure: response.data.main.pressure,
-        rain: response.data.rain,
         wind: response.data.wind.speed,
         })
     })
+
+  
 
 }
 
@@ -55,6 +57,7 @@ class App extends React.Component {
         <Title />
         <Form getWeather={this.getWeather}/>
         <Weather city={this.state.city}
+                 weather={this.state.weather}
                  latitude={this.state.latitude}
                  longitude={this.state.longitude}
                  temp={this.state.temp}
