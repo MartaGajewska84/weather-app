@@ -25,8 +25,8 @@ class App extends React.Component {
 
   getWeather= (e) => {
     e.preventDefault();
-    let city = e.target.elements.city.value;
-  
+    /*let city = e.target.elements.city.value;*/
+    
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then(response => {
       console.log(response);
@@ -42,9 +42,11 @@ class App extends React.Component {
         pressure: response.data.main.pressure,
         wind: response.data.wind.speed,
         })
+
     })
 
-  
+      
+      
 
 }
 
@@ -56,17 +58,7 @@ class App extends React.Component {
       <div className="App">
         <Title />
         <Form getWeather={this.getWeather}/>
-        <Weather city={this.state.city}
-                 weather={this.state.weather}
-                 latitude={this.state.latitude}
-                 longitude={this.state.longitude}
-                 temp={this.state.temp}
-                 tempMax={this.state.tempMax}
-                 tempMin={this.state.tempMin}
-                 humidity={this.state.humidity}
-                 pressure={this.state.pressure}
-                 rain={this.state.rain}
-                 wind={this.state.wind}/>
+        <Weather {...this.state}/>
       </div>
     );
   }
