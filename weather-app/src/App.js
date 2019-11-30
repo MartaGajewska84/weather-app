@@ -9,7 +9,7 @@ const API_KEY = '05508bb378ad891b493b0c886cca7a57';
 
 class App extends React.Component {
   state = {
-    city: '',
+    cityName: '',
     weather: '',
     latitude: '',
     longitude: '',
@@ -19,19 +19,28 @@ class App extends React.Component {
     humidity: '',
     pressure: '',
     wind: '',
-    isLoading: false,
+    isBusy: false,
     error: false
   }
 
+  changeStateOfInput = (event) => {
+    const { value, name } = event.target
+    this.setState({
+      [name]: value
+    })
+  }
+  
   getWeather= (e) => {
     e.preventDefault();
-    /*let city = e.target.elements.city.value;*/
     
+  
+    const {city} = this.state
+   
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then(response => {
       console.log(response);
       this.setState({
-        city: response.data.name,
+        cityName: response.data.name,
         weather: response.data.weather[0].description,
         latitude: response.data.coord.lat,
         longitude: response.data.coord.lon,
@@ -41,23 +50,17 @@ class App extends React.Component {
         humidity: response.data.main.humidity,
         pressure: response.data.main.pressure,
         wind: response.data.wind.speed,
+        isBusy: true
         })
 
     })
 
-      
-      
-
 }
-
-  
-  
-  
   render() {
     return (
       <div className="App">
         <Title />
-        <Form getWeather={this.getWeather}/>
+        <Form getWeather={this.getWeather} changeStateOfInput={this.changeStateOfInput}/>
         <Weather {...this.state}/>
       </div>
     );

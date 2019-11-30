@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Weather = ({city, weather, latitude, longitude, temp, tempMax, tempMin, humidity, pressure, wind}) => {
+const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, tempMin, humidity, pressure, wind}) => {
     
         return(
           <div>
-              {city && <p>{city}</p>}
+              {city && <p>{cityName}</p>}
               {city && <p>{weather}</p>}
               {city && <p>Latitude: {latitude}</p>}
               {city && <p>Longitude: {longitude}</p>}

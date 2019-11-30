@@ -5,23 +5,19 @@ class Form extends React.Component {
         city: ''
     }
 
-    changeStateOfInput = (event) => {
-        const {value, name} = event.target
-        this.setState({
-            [name]: value
-        })
-    }
+    
     render() {
-        const {city} = this.state
+        const {city, getWeather, changeStateOfInput} = this.props
         return(
-            <form onSubmit={this.props.getWeather}>
+            <form onSubmit={getWeather}>
                 <input type='text' 
                        name='city' 
                        value={city}
                        placeholder='City...'
-                       onChange={this.changeStateOfInput}>
+                       onChange={changeStateOfInput}
+                       >
                 </input>
-                <button>Check Weather</button>
+                <button >Check Weather</button>
             </form>
         )
     }    
