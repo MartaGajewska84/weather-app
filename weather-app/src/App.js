@@ -19,27 +19,38 @@ class App extends React.Component {
     humidity: '',
     pressure: '',
     wind: '',
-    isBusy: false,
     error: false
   }
 
   changeStateOfInput = (event) => {
     const { value, name } = event.target
     this.setState({
-      [name]: value
+      [name]: value,
+      cityName: '',
+      weather: '',
+      latitude: '',
+      longitude: '',
+      temp: '',
+      tempMax: '',
+      tempMin: '',
+      humidity: '',
+      pressure: '',
+      wind: '',
     })
   }
+
+
   
   getWeather= (e) => {
     e.preventDefault();
     
-  
     const {city} = this.state
-   
+    
+    if (city){
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then(response => {
       console.log(response);
-      this.setState({
+        this.setState({
         cityName: response.data.name,
         weather: response.data.weather[0].description,
         latitude: response.data.coord.lat,
@@ -50,12 +61,18 @@ class App extends React.Component {
         humidity: response.data.main.humidity,
         pressure: response.data.main.pressure,
         wind: response.data.wind.speed,
-        isBusy: true
+        error: false
         })
+       })
+      } else {
+        this.setState({
+          error: true,   
+        })
+      }
+    }  
+    
+    
 
-    })
-
-}
   render() {
     return (
       <div className="App">

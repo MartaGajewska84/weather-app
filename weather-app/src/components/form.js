@@ -2,10 +2,9 @@ import React from 'react';
 
 class Form extends React.Component { 
     state = {
-        city: ''
+        city: '',
     }
 
-    
     render() {
         const {city, getWeather, changeStateOfInput} = this.props
         return(
