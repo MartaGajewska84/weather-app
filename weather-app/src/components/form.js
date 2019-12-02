@@ -8,16 +8,17 @@ class Form extends React.Component {
     render() {
         const {city, getWeather, changeStateOfInput} = this.props
         return(
-            <form onSubmit={getWeather}>
+           <form className="form-inline mb-4 justify-content-center" onSubmit={getWeather}>
                 <input type='text' 
-                       name='city' 
-                       value={city}
-                       placeholder='City...'
-                       onChange={changeStateOfInput}
-                       >
+                    name='city' 
+                    value={city}
+                    placeholder='City...'
+                    onChange={changeStateOfInput}
+                    >
                 </input>
-                <button >Check Weather</button>
+                <button  className="btn btn-warning btn-sm ml-3">Check Weather</button>
             </form>
+                    
         )
     }    
 }

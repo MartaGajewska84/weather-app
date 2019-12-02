@@ -2,8 +2,10 @@ import React from 'react';
 
 const Title = () => {
     return(
-        <div>
-          <h1>Local Weather</h1>
+        <div className="container mb-3 mt-5 text-center text-light">
+          
+              <h1>Local Weather</h1>
+          
         </div>
     )
 }
