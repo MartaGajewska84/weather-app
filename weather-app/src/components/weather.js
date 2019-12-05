@@ -17,7 +17,7 @@ const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, t
               {city && <h6>Humidity: {humidity}%</h6>}
               {city && <h6>Pressure: {pressure}hPa</h6>}
               {city && <h6>Wind: {wind}m/s</h6>}
-              {error && <h3>Please enter the city name</h3>} 
+              {error && <h3>Please enter a city name</h3>} 
           </div>
           
         )

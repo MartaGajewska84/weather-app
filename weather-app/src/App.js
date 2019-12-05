@@ -19,33 +19,28 @@ class App extends React.Component {
     humidity: '',
     pressure: '',
     wind: '',
-    error: false
+    error: false,
+    showWeather: false
   }
 
   changeStateOfInput = (event) => {
-    const { value, name } = event.target
+    const { value, name } = event.target;
     this.setState({
       [name]: value,
-      cityName: '',
-      weather: '',
-      latitude: '',
-      longitude: '',
-      temp: '',
-      tempMax: '',
-      tempMin: '',
-      humidity: '',
-      pressure: '',
-      wind: '',
-    })
+      showWeather: false
+      })
   }
 
+  toggleWeatherHandler = () => {
+    const doesShow = this.state.showWeather;
+    this.setState({showWeather: !doesShow})
+  }
 
-  
-  getWeather= (e) => {
+    getWeather= (e) => {
     e.preventDefault();
     
     const {city} = this.state
-    
+  
     if (city){
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then(response => {
@@ -61,24 +56,28 @@ class App extends React.Component {
         humidity: response.data.main.humidity,
         pressure: response.data.main.pressure,
         wind: response.data.wind.speed,
-        error: false
+        error: false,
+        showWeather: true
         })
        })
       } else {
         this.setState({
-          error: true,   
+          error: true,
         })
       }
     }  
     
-    
-
-  render() {
+    render() {
     return (
       <div className="App">
         <Title />
-        <Form getWeather={this.getWeather} changeStateOfInput={this.changeStateOfInput}/>
-        <Weather {...this.state}/>
+        <Form getWeather={this.getWeather} 
+              toggleWeatherHandler={this.toggleWeatherHandler} 
+              changeStateOfInput={this.changeStateOfInput}/>
+        {this.state.showWeather ?
+        <div>
+          <Weather {...this.state}/>
+        </div> : null}
       </div>
     );
   }

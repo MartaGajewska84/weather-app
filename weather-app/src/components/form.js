@@ -6,17 +6,16 @@ class Form extends React.Component {
     }
 
     render() {
-        const {city, getWeather, changeStateOfInput} = this.props
+        const {city, getWeather, changeStateOfInput, toggleWeatherHandler} = this.props
         return(
            <form className="form-inline mb-4 justify-content-center" onSubmit={getWeather}>
                 <input type='text' 
                     name='city' 
                     value={city}
                     placeholder='City...'
-                    onChange={changeStateOfInput}
-                    >
+                    onChange={changeStateOfInput}>
                 </input>
-                <button  className="btn btn-warning btn-sm ml-3">Check Weather</button>
+                <button onClick={toggleWeatherHandler} className="btn btn-warning btn-sm ml-3">Check Weather</button>
             </form>
                     
         )
