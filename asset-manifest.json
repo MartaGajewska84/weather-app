@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/weather-app/static/css/main.4997c4bf.chunk.css",
+    "main.js": "/weather-app/static/js/main.4501893d.chunk.js",
+    "main.js.map": "/weather-app/static/js/main.4501893d.chunk.js.map",
+    "runtime-main.js": "/weather-app/static/js/runtime-main.630a9fd3.js",
+    "runtime-main.js.map": "/weather-app/static/js/runtime-main.630a9fd3.js.map",
+    "static/js/2.15f4c2ac.chunk.js": "/weather-app/static/js/2.15f4c2ac.chunk.js",
+    "static/js/2.15f4c2ac.chunk.js.map": "/weather-app/static/js/2.15f4c2ac.chunk.js.map",
+    "index.html": "/weather-app/index.html",
+    "precache-manifest.d9f16247c9d3834f3784e2176fd728db.js": "/weather-app/precache-manifest.d9f16247c9d3834f3784e2176fd728db.js",
+    "service-worker.js": "/weather-app/service-worker.js",
+    "static/css/main.4997c4bf.chunk.css.map": "/weather-app/static/css/main.4997c4bf.chunk.css.map",
+    "static/media/index.css": "/weather-app/static/media/stars-and-clouds-at-nighttime-1229042.5d0871f6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.630a9fd3.js",
+    "static/js/2.15f4c2ac.chunk.js",
+    "static/css/main.4997c4bf.chunk.css",
+    "static/js/main.4501893d.chunk.js"
+  ]
+}
