@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, tempMin, humidity, pressure, wind, error}) => {
+const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, tempMin, humidity, pressure, wind, noSuchCity, error}) => {
     
         return(
             
@@ -23,7 +23,9 @@ const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, t
                                 <h6>Wind: {wind}m/s</h6>
                             </div>
                         </div>}
-                    {error && <h3>Please enter a city name</h3>} 
+                    {error && <h3>Please enter a city name</h3>}
+                    {noSuchCity && <h3>This city does not exist</h3>}
+                    
                 
             </div>
           

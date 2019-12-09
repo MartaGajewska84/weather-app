@@ -5,6 +5,7 @@ import Title from './components/title';
 import Form from './components/form';
 import Weather from './components/weather';
 
+
 const API_KEY = '05508bb378ad891b493b0c886cca7a57';
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
     pressure: '',
     wind: '',
     error: false,
+    noSuchCity: false,
     showWeather: false
   }
 
@@ -27,13 +29,15 @@ class App extends React.Component {
     const { value, name } = event.target;
     this.setState({
       [name]: value,
-      showWeather: false
+      showWeather: false,
       })
   }
 
   toggleWeatherHandler = () => {
     const doesShow = this.state.showWeather;
-    this.setState({showWeather: !doesShow})
+    this.setState({showWeather: !doesShow
+
+    })
   }
 
     getWeather= (e) => {
@@ -60,24 +64,35 @@ class App extends React.Component {
         showWeather: true
         })
        })
-      } else {
+      .catch(error => {
+        console.log(error)
+        this.setState({
+          noSuchCity: true,
+          showWeather: false
+          })
+        }
+      )} else {
         this.setState({
           error: true,
+          noSuchCity: false
         })
       }
     }  
     
     render() {
+      
     return (
       <div className="App">
         <Title />
         <Form getWeather={this.getWeather} 
               toggleWeatherHandler={this.toggleWeatherHandler} 
               changeStateOfInput={this.changeStateOfInput}/>
+        
         {this.state.showWeather ?
         <div>
           <Weather {...this.state}/>
         </div> : null}
+        
       </div>
     );
   }
