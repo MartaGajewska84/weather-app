@@ -35,9 +35,7 @@ class App extends React.Component {
 
   toggleWeatherHandler = () => {
     const doesShow = this.state.showWeather;
-    this.setState({showWeather: !doesShow
-
-    })
+    this.setState({showWeather: !doesShow})
   }
 
     getWeather= (e) => {
@@ -61,17 +59,18 @@ class App extends React.Component {
         pressure: response.data.main.pressure,
         wind: response.data.wind.speed,
         error: false,
+        noSuchCity: false,
         showWeather: true
         })
        })
-      .catch(error => {
+       .catch(error => {
         console.log(error)
-        this.setState({
-          noSuchCity: true,
-          showWeather: false
+          this.setState({
+            noSuchCity: true,
           })
         }
-      )} else {
+      )}
+     else {
         this.setState({
           error: true,
           noSuchCity: false
@@ -80,22 +79,34 @@ class App extends React.Component {
     }  
     
     render() {
-      
-    return (
-      <div className="App">
-        <Title />
-        <Form getWeather={this.getWeather} 
+      const{noSuchCity} = this.state
+
+      if (noSuchCity) {
+        return (
+          <div className="App">
+            <Title />
+            <Form getWeather={this.getWeather} 
               toggleWeatherHandler={this.toggleWeatherHandler} 
               changeStateOfInput={this.changeStateOfInput}/>
         
-        {this.state.showWeather ?
-        <div>
-          <Weather {...this.state}/>
-        </div> : null}
+            <div className="container mt-3 text-center text-light">
+              <h3>This city does not exist</h3>
+            </div>
+          </div>
+          )} else {
+             return (
+              <div className="App">
+                <Title />
+                <Form getWeather={this.getWeather} 
+                  toggleWeatherHandler={this.toggleWeatherHandler} 
+                  changeStateOfInput={this.changeStateOfInput}/>
         
-      </div>
-    );
-  }
+                {this.state.showWeather ?
+                <div>
+                  <Weather {...this.state}/>
+                </div> : null}
+                </div>);}
+    }
 }
 
 export default App;

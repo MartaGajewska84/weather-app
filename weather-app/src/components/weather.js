@@ -24,9 +24,7 @@ const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, t
                             </div>
                         </div>}
                     {error && <h3>Please enter a city name</h3>}
-                    {noSuchCity && <h3>This city does not exist</h3>}
                     
-                
             </div>
           
         )
