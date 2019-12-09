@@ -30,6 +30,7 @@ class App extends React.Component {
     this.setState({
       [name]: value,
       showWeather: false,
+      noSuchCity: false
       })
   }
 
