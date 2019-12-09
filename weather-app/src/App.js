@@ -42,7 +42,7 @@ class App extends React.Component {
     const {city} = this.state
   
     if (city){
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then(response => {
       console.log(response);
         this.setState({
