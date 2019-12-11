@@ -23,7 +23,7 @@ const Weather = ({city, cityName, weather, latitude, longitude, temp, tempMax, t
                                 <h6>Wind: {wind}m/s</h6>
                             </div>
                         </div>}
-                    {error && <h3>Please enter a city name</h3>}
+                    
                     
             </div>
           

@@ -30,14 +30,14 @@ class App extends React.Component {
     this.setState({
       [name]: value,
       showWeather: false,
-      noSuchCity: false
+      noSuchCity: false,
       })
   }
 
   toggleWeatherHandler = () => {
     const doesShow = this.state.showWeather;
-    this.setState({showWeather: !doesShow})
-  }
+    this.setState({showWeather: doesShow})}
+  
 
     getWeather= (e) => {
     e.preventDefault();
@@ -68,19 +68,21 @@ class App extends React.Component {
         console.log(error)
           this.setState({
             noSuchCity: true,
+            showWeather: false
           })
         }
       )}
      else {
         this.setState({
           error: true,
-          noSuchCity: false
+          //noSuchCity: false
         })
       }
     }  
     
     render() {
       const{noSuchCity} = this.state
+      const{city} = this.state
 
       if (noSuchCity) {
         return (
@@ -94,20 +96,36 @@ class App extends React.Component {
               <h3>This city does not exist</h3>
             </div>
           </div>
-          )} else {
-             return (
-              <div className="App">
-                <Title />
-                <Form getWeather={this.getWeather} 
-                  toggleWeatherHandler={this.toggleWeatherHandler} 
-                  changeStateOfInput={this.changeStateOfInput}/>
+      )} else if (!noSuchCity && city){
+          return (
+            <div className="App">
+              <Title />
+              <Form getWeather={this.getWeather} 
+                toggleWeatherHandler={this.toggleWeatherHandler} 
+                changeStateOfInput={this.changeStateOfInput}/>
         
-                {this.state.showWeather ?
+              {this.state.showWeather ?
                 <div>
                   <Weather {...this.state}/>
                 </div> : null}
                 </div>);}
-    }
+                  
+       else {
+          return (
+              <div className="App">
+                <Title />
+                  <Form getWeather={this.getWeather} 
+                      toggleWeatherHandler={this.toggleWeatherHandler} 
+                      changeStateOfInput={this.changeStateOfInput}/>
+        
+                    <div className="container mt-3 text-center text-light">
+                      <h3>Please enter a city name</h3>
+                    </div>
+              </div>)}
+        
+          }
+        
+        
 }
 
 export default App;
